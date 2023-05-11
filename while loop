@@ -1,0 +1,103 @@
+#Create 10 files
+$i=1
+while($i -le 10)
+{
+    $filename = 'tejas.1.whileloop' + $i + '.txt'
+    New-Item -Path $filename -ItemType  File
+     $i++
+} 
+
+#Create 10 folders
+   $j=1 
+    while( $j -le 10)
+{
+    $foldernm = 'tejas.1.whileloop' + $j
+    New-Item -Path $foldernm -ItemType  Directory
+    $j++
+}
+
+
+
+
+#Create 10 folders inside the folders created in step 2 
+$i=1
+while($i -le 10)
+{
+$folder = 'tejas.1.whileloop' + $i
+
+$j=1
+while($j -le 10)
+{
+$folder1 = 'tejas.1.whileloop' + $j
+New-Item -Path $folder\$folder1 -ItemType  Directory
+$j++
+}
+$i++
+    
+} 
+
+
+#Create 10 files in the 10 folders created in step 3
+ $j=1 
+ while($j -le 10)
+{
+$folder = 'tejas.1.whileloop' + $j
+$k=1
+while( $k -le 10)
+{
+$folder1 = 'tejas.1.whileloop' + $k
+$l=1
+while($l -le 10)
+{
+$folder2 = 'tejas.1.whileloop' + $l + '.txt'
+New-Item -Path $folder\$folder1\$folder2 -ItemType  file
+$l++
+}
+                    
+$k++
+}
+        
+$j++      
+}
+ 
+
+#Copy 10 files to each of 10 folders
+$j=1
+while($j -le 10)
+{
+$folder = 'tejas.1.whileloop' + $j
+$k=1
+while ($k -le 10)
+{
+$folder1 = 'tejas.1.whileloop' + $k
+$l=1 
+while( $l -le 10  )
+{
+$cpfile = 'tejas.1.whileloop' + $l + '.txt'
+Copy-Item $cpfile -Recurse -Destination $folder\$folder1 
+$l++
+}
+$k++
+    
+}
+$j++
+} 
+
+#Remove all the files from the folders
+$j=1
+While($j -le 10)
+{
+    $folder = 'tejas.1.whileloop' + $j
+    $k=1
+    while($k -le 10)
+    {
+        $folder1 = 'tejas.1.whileloop' + $k
+        Remove-Item -Path $folder\$folder1\* -Recurse 
+        $k++
+    }
+    $j++
+    
+} 
+
+
+
