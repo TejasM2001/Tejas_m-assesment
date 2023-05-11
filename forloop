@@ -1,0 +1,68 @@
+FOR LOOP 
+# Create 10 files
+
+for($i=1; $i -lt 11; $i++){
+ $fileName = 'Tejas.m.FOLDER'+$i
+ New-Item -Path $fileName -ItemType Directory
+
+} 
+
+
+
+# to create files
+for($i=1; $i -lt 11; $i++){
+ $fileName = 'Tejas.m.FOLDER'+$i+'.txt'
+ New-Item -Path $fileName -ItemType File
+
+} 
+
+# Create 10 folders inside the folders created in step 2
+$rootdir = 'C:\Temp'
+$Files = @('Tejas.m.FOLDER1.txt', 'Tejas.m.FOLDER2.txt', 'Tejas.m.FOLDER3.txt', 'Tejas.m.FOLDER4.txt', 'Tejas.m.FOLDER5.txt', 'Tejas.m.FOLDER6.txt', 'Tejas.m.FOLDER7.txt', 'Tejas.m.FOLDER8.txt', 'Tejas.m.FOLDER9.txt', 'Tejas.m.FOLDER10.txt')
+foreach($File in $Files){
+Get-ChildItem $rootdir  | ForEach-Object{
+New-Item -ItemType file  -Path $_.Fullname -Name $File -Force
+}
+} 
+
+#Create 10 files in the 10 folders created in step 3
+$rootdir = 'C:\Temp'
+$Files = @('Tejas.m.FOLDER1.txt', 'Tejas.m.FOLDER2.txt', 'Tejas.m.FOLDER3.txt', 'Tejas.m.FOLDER4.txt', 'Tejas.m.FOLDER5.txt', 'Tejas.m.FOLDER6.txt', 'Tejas.m.FOLDER7.txt', 'Tejas.m.FOLDER8.txt', 'Tejas.m.FOLDER9.txt', 'Tejas.m.FOLDER10.txt')
+foreach($File in $Files){
+Get-ChildItem $rootdir  | ForEach-Object{
+New-Item -ItemType file  -Path $_.Fullname -Name $File -Force
+}
+} 
+
+#Copy 10 files to each of 10 folders
+for($j=1 ; $j -lt 11 ; $j++)
+{
+$folder = 'Tejas.m.FOLDER' + $j
+
+for($k=1 ; $k -lt 11 ; $k++)
+{
+$folder1 = 'Tejas.m.FOLDER' + $k
+for($l=1 ; $l -lt 11 ; $l++)
+{
+$cpfile = 'Tejas.m.FOLDER' + $l + '.txt'
+Copy-Item $cpfile -Recurse -Destination $folder\$folder1 
+}
+}
+} 
+#Remove all the files from the folders
+for($i=1; $i -le 10; $i++){
+$folder = 'Tejas.m.FOLDER'+$Ii
+
+for($j=1 ; $j -lt 11 ; $j++)
+{
+$folder1 = 'Tejas.m.FOLDER' + $j
+
+for($k=1 ; $k -lt 11 ; $k++)
+{
+$folder2 = 'Tejas.m.FOLDER' + $k
+Remove-Item -Path $folder\$folder1\$folder3* -Recurse 
+}
+}
+}
+ 
+
